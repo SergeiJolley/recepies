@@ -50,12 +50,27 @@ function getMealById(mealID) {
         });
 }
 
+function getRandomMeal() {
+    mealsEl.innerHTML = '';
+    resultHeading.innerHTML = '';
+
+    fetch(`https://www.themealdb.com/api/json/v1/1/random.php`)
+        .then(res => res.json())
+        .then(data => {
+            const meal = data.meals[0];
+
+            addMealToDOM(meal);
+        });
+}
+
 function addMealToDOM(meal) {
     const ingredients = [];
 
     for (let i = 1; i <= 20; i++) {
         if (meal[`strIngredient${i}`]) {
-            ingredients.push(`${meal[`strIngredient${i}`]} - ${meal[`strMeasure${i}`]}`)
+            ingredients.push(
+                `${meal[`strIngredient${i}`]} - ${meal[`strMeasure${i}`]}`
+            );
         } else {
             break;
         }
@@ -82,6 +97,7 @@ function addMealToDOM(meal) {
 
 
 submit.addEventListener('submit', searchMeal);
+random.addEventListener('click', getRandomMeal);
 
 mealsEl.addEventListener('click', e => {
     const mealInfo = e.path.find(item => {
