@@ -114,7 +114,7 @@ mealsEl.addEventListener('click', e => {
     }
 });
 
-mealsEl.addEventListener('touchstart', e => {
+mealsEl.addEventListener('touchend', e => {
     const mealInfo = e.path.find(item => {
         if (item.classList) {
             return item.classList.contains('meal-info');
