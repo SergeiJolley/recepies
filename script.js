@@ -98,7 +98,6 @@ function addMealToDOM(meal) {
 
 submit.addEventListener('submit', searchMeal);
 random.addEventListener('click', getRandomMeal);
-random.addEventListener('touchend', getRandomMeal);
 mealsEl.addEventListener('click', e => {
     const mealInfo = e.path.find(item => {
         if (item.classList) {
@@ -114,7 +113,7 @@ mealsEl.addEventListener('click', e => {
     }
 });
 
-mealsEl.addEventListener('touchend', e => {
+mealsEl.addEventListener('touchend touchcancel', e => {
     const mealInfo = e.path.find(item => {
         if (item.classList) {
             return item.classList.contains('meal-info');
